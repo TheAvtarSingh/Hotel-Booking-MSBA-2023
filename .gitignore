@@ -1,0 +1,9 @@
+# Ignore specific files and directories
+.metadata/
+.DS_Store
+.git/
+
+# Ignore other unwanted files and directories
+.*     # Ignore hidden files
+*~     # Ignore backup files
+hi.java  # Ignore Java class files
