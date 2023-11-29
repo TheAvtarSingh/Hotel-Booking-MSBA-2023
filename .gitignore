@@ -6,3 +6,4 @@
 # Ignore other unwanted files and directories
 .*     # Ignore hidden files
 *~     # Ignore backup files
+hi.java  # Ignore Java class files
