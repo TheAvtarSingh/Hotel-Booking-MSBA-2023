@@ -1,5 +1,6 @@
 .metadata/
 .metadata/.plugins/
+.DS_Store
 
 bin/
 tmp/
