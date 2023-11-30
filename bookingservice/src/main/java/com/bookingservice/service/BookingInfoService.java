@@ -1,11 +1,10 @@
 package com.bookingservice.service;
 
-import java.sql.Date;
-
+import com.bookingservice.dto.BookingInfoResponseDTO;
 import com.bookingservice.entity.BookingInfoEntity;
 
 public interface BookingInfoService {
 
-	public BookingInfoEntity getBookingQuote(BookingInfoEntity bookingInfoEntity);
+	public BookingInfoResponseDTO getBookingQuote(BookingInfoEntity bookingInfoEntity);
 	
 }

@@ -1,11 +1,9 @@
 package com.bookingservice.service;
 
-import java.sql.Date;
-import java.util.ArrayList;
+import com.bookingservice.businessLogics.BusinessLogicMethodClass;
+import com.bookingservice.dto.BookingInfoResponseDTO;
+
 import java.util.List;
-import java.util.Random;
-import java.util.StringJoiner;
-import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,46 +13,43 @@ import com.bookingservice.repository.BookingInfoRepository;
 
 @Service
 public class BookingInfoServiceImplementation implements BookingInfoService {
-	
+
 	@Autowired
 	private BookingInfoRepository bookingInfoRepository;
 
+//	Object of Separate Class Containing complete logic
+	BusinessLogicMethodClass logicMethodsClass = new BusinessLogicMethodClass();
+
 	@Override
-	public BookingInfoEntity getBookingQuote(BookingInfoEntity bookingInfoEntity) {
+	public BookingInfoResponseDTO getBookingQuote(BookingInfoEntity bookingInfoEntity) {
 		// TODO Auto-generated method stub
 		
+//		if There is a Booking within the date (from and to) and from already existed aadharNumber
+	List<BookingInfoEntity> existingBooking = bookingInfoRepository.findAllByAadharNumberAndFromDateLessThanEqualAndToDateGreaterThanEqual(bookingInfoEntity.getAadharNumber(), bookingInfoEntity.getFromDate(), bookingInfoEntity.getToDate());
+	 if (!existingBooking.isEmpty()) { 
+         return null;
+     }
+	
+//		 Save the Data
+
+//		 Method for Random Room Numbers logic
+		String randomRoomNumbers = logicMethodsClass.generateRandomRoomNumbers(bookingInfoEntity.getNumOfRooms());
+		int calculatedRoomPrices = logicMethodsClass.calculateRoomPrice(bookingInfoEntity.getNumOfRooms(),
+				bookingInfoEntity.getFromDate(), bookingInfoEntity.getToDate());
+
+//        Setting Up Additional Data
 		bookingInfoEntity.setBookedOn(bookingInfoEntity.getFromDate());
-		bookingInfoEntity.setRoomNumbers(generateRandomRoomNumbers(bookingInfoEntity.getNumOfRooms()));
-		bookingInfoEntity.setRoomPrice(calculateRoomPrice(bookingInfoEntity.getNumOfRooms(), bookingInfoEntity.getFromDate(), bookingInfoEntity.getToDate()));
+		bookingInfoEntity.setRoomNumbers(randomRoomNumbers);
+		bookingInfoEntity.setRoomPrice(calculatedRoomPrices);
 		
+		
+		
+		BookingInfoEntity bookedInfoEntity =  bookingInfoRepository.save(bookingInfoEntity);
+		BookingInfoResponseDTO response =  logicMethodsClass.toDto(bookedInfoEntity);
+
+		return response;
 	
-		return 	bookingInfoRepository.save(bookingInfoEntity);
+
 	}
-	
-	
-	 private String generateRandomRoomNumbers(int numOfRooms) {
-	  
-	        Random random = new Random();
-	        
-	        StringJoiner joiner = new StringJoiner(", ");
-	       
-
-	      
-
-	        // Generate 'numOfRooms' random room numbers
-	        for (int i = 0; i < numOfRooms; i++) {
-	            String roomNumber = ""+(random.nextInt(100) + 1); 
-	            joiner.add(roomNumber);
-	        }
-	        String result = joiner.toString();
-
-	        return result;
-	    }
-	 
-	 private int calculateRoomPrice(int numOfRooms, Date fromDate, Date toDate) {
-		    int basePricePerRoomPerDay = 1000;
-		    long numberOfDays = TimeUnit.MILLISECONDS.toDays(toDate.getTime() - fromDate.getTime());
-		    return (int) ((Integer)basePricePerRoomPerDay * numOfRooms * numberOfDays);
-		}
 
 }
