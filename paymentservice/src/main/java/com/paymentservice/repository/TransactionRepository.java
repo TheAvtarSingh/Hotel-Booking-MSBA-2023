@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface TransactionRepository extends JpaRepository<TransactionDetailsEntity, Integer> {
 TransactionDetailsEntity findByBookingId(int bookingId);
+
+TransactionDetailsEntity findByTransactionId(int transactionId);
 }

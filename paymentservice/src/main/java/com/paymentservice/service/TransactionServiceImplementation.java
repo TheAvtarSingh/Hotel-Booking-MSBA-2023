@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
+import com.paymentservice.dto.BookingInfoDTO;
 import com.paymentservice.entity.TransactionDetailsEntity;
+import com.paymentservice.exception.classes.TransactionsException;
 import com.paymentservice.repository.TransactionRepository;
 
 @Service
@@ -15,6 +18,8 @@ public class TransactionServiceImplementation implements TransactionService {
 	
 	@Autowired
 	private TransactionRepository transactionRepository;
+	
+	
 
 	@Override
 	public ResponseEntity<Integer> performTransaction(TransactionDetailsEntity newTransaction) {
@@ -37,11 +42,24 @@ public class TransactionServiceImplementation implements TransactionService {
 	public Integer findTransactionID(TransactionDetailsEntity newTransaction) {
 		// TODO Auto-generated method stub
 		TransactionDetailsEntity existingEntity =  transactionRepository.findByBookingId(newTransaction.getBookingId());
+		
+		
+		
 		if (existingEntity!=null) {
 			return existingEntity.getTransactionId();
 		}
 	return null;
 		
+	}
+
+	@Override
+	public TransactionDetailsEntity findTransactionById(int transactionId) {
+		// TODO Auto-generated method stub
+		TransactionDetailsEntity existedtransaction = transactionRepository.findByTransactionId(transactionId);
+		if(existedtransaction!=null) {
+			return existedtransaction;
+		}
+		return null;
 	}
 
 }

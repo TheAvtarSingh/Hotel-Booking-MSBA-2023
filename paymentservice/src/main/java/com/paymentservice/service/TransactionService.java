@@ -8,4 +8,5 @@ public interface TransactionService {
 
 ResponseEntity<Integer> performTransaction(TransactionDetailsEntity newTransaction);
 Integer findTransactionID(TransactionDetailsEntity newTransaction);
+TransactionDetailsEntity findTransactionById(int transactionId);
 }

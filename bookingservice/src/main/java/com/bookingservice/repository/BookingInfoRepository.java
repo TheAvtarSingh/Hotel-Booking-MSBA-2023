@@ -14,5 +14,6 @@ public interface BookingInfoRepository extends JpaRepository<BookingInfoEntity, 
             String aadharNumber, Date fromDate, Date toDate);
     
     BookingInfoEntity findByBookingId(int bookingId);
+    BookingInfoEntity findByTransactionId(int transactionId);
 
 }

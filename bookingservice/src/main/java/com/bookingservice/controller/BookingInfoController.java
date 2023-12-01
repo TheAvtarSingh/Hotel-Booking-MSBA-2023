@@ -4,14 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.reactive.function.BodyInserter;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -76,15 +75,33 @@ public class BookingInfoController {
 
 			WebClient transactionWebClient = webClientBuilder.baseUrl(transactionServiceUrl).build();
 
-			String transactionEndpoint = "/findtransaction";
+			String transactionEndpoint = "/transaction";
 
-			ResponseEntity<Integer> transactionIDResponse = transactionWebClient.post().uri(transactionEndpoint)
-					.contentType(MediaType.APPLICATION_JSON).body(BodyInserters.fromValue(confirmTransaction))
+			ResponseEntity<Integer> transactionIDResponse = transactionWebClient
+					.post().uri(transactionEndpoint)
+					.contentType(MediaType.APPLICATION_JSON)
+					.body(BodyInserters
+					.fromValue(confirmTransaction))
 					.retrieve().toEntity(Integer.class).block();
+			
+//			System.out.println(transactionIDResponse.getBody());
 
 			if (transactionIDResponse.getStatusCode().is2xxSuccessful()) {
 
 				BookingInfoEntity updateResponse = updateTransactionId(bookingId, transactionIDResponse.getBody());
+				
+	
+		            	String message = "Booking confirmed for user with aadhaar number: "
+		                        + updateResponse.getAadharNumber()
+		                        + " | "
+		                        + "Here are the booking details: " + updateResponse.toString();
+
+		                // Print or return the message as needed
+		                System.out.println(message);
+		               
+		          
+
+				
 				if (updateResponse != null) {
 					return new ResponseEntity<>(updateResponse, HttpStatus.CREATED);
 				}
@@ -94,7 +111,7 @@ public class BookingInfoController {
 		} catch (Exception e) {
 			// TODO: handle exception
 
-			throw new BookingConflictException("Invalid Booking Id!!", HttpStatus.BAD_REQUEST);
+			throw new BookingConflictException("Invalid Booking Id", HttpStatus.BAD_REQUEST);
 		}
 		throw new BookingConflictException("Transaction Not Existed !!", HttpStatus.NOT_FOUND);
 	}
@@ -111,5 +128,15 @@ public class BookingInfoController {
 		}
 		throw new BookingConflictException("Booking Does Not Exists !!", HttpStatus.NOT_FOUND);
 
+	}
+	
+	@GetMapping("/getBookingByTransId/{transactionId}")
+	public BookingInfoEntity getBookingInfoByTransID(@PathVariable int transactionId) {
+		
+		BookingInfoEntity availableEntity = bookingService.getBookingByTransactionId(transactionId);
+		if (availableEntity!=null) {
+			return availableEntity;
+		}
+		throw new BookingConflictException("Booking with Transaction ID "+transactionId+"Does Not Exists !!", HttpStatus.NOT_FOUND);
 	}
 }

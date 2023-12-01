@@ -3,6 +3,7 @@ package com.bookingservice.service;
 import com.bookingservice.businessLogics.BusinessLogicMethodClass;
 import com.bookingservice.dto.BookingInfoResponseDTO;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,9 +41,10 @@ public class BookingInfoServiceImplementation implements BookingInfoService {
 		String randomRoomNumbers = logicMethodsClass.generateRandomRoomNumbers(bookingInfoEntity.getNumOfRooms());
 		int calculatedRoomPrices = logicMethodsClass.calculateRoomPrice(bookingInfoEntity.getNumOfRooms(),
 				bookingInfoEntity.getFromDate(), bookingInfoEntity.getToDate());
+		Date date = new Date();
 
 //        Setting Up Additional Data
-		bookingInfoEntity.setBookedOn(bookingInfoEntity.getFromDate());
+		bookingInfoEntity.setBookedOn(date);
 		bookingInfoEntity.setRoomNumbers(randomRoomNumbers);
 		bookingInfoEntity.setRoomPrice(calculatedRoomPrices);
 		
@@ -69,6 +71,17 @@ public class BookingInfoServiceImplementation implements BookingInfoService {
 		 
 		
 		return null;
+	}
+
+	@Override
+	public BookingInfoEntity getBookingByTransactionId(int transactionId) {
+		// TODO Auto-generated method stub
+		BookingInfoEntity availableBooking  = bookingInfoRepository.findByTransactionId(transactionId);
+		if (availableBooking!=null) {
+			return availableBooking;
+		}
+		return null;
+	
 	}
 
 }
