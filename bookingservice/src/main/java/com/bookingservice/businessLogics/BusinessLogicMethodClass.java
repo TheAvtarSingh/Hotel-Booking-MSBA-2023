@@ -5,9 +5,12 @@ import java.util.Random;
 import java.util.StringJoiner;
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.stereotype.Component;
+
 import com.bookingservice.dto.BookingInfoResponseDTO;
 import com.bookingservice.entity.BookingInfoEntity;
 
+@Component
 public class BusinessLogicMethodClass {
 	
 //	Method to generate String of Random Room Numbers

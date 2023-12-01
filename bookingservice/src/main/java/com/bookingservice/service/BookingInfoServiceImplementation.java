@@ -16,9 +16,13 @@ public class BookingInfoServiceImplementation implements BookingInfoService {
 
 	@Autowired
 	private BookingInfoRepository bookingInfoRepository;
+	
+//	Business Logic class
+	@Autowired
+	private BusinessLogicMethodClass logicMethodsClass;
 
 //	Object of Separate Class Containing complete logic
-	BusinessLogicMethodClass logicMethodsClass = new BusinessLogicMethodClass();
+//	BusinessLogicMethodClass logicMethodsClass = new BusinessLogicMethodClass();
 
 	@Override
 	public BookingInfoResponseDTO getBookingQuote(BookingInfoEntity bookingInfoEntity) {
@@ -50,6 +54,21 @@ public class BookingInfoServiceImplementation implements BookingInfoService {
 		return response;
 	
 
+	}
+
+	@Override
+	public BookingInfoEntity updateTransactionId(int bookingId, int transactionId) {
+		// TODO Auto-generated method stub
+		 BookingInfoEntity existingBooking = bookingInfoRepository.findByBookingId(bookingId);
+		 
+		 if (existingBooking!=null) {
+			  existingBooking.setTransactionId(transactionId);
+			  BookingInfoEntity updatedBookingInfoEntity =  bookingInfoRepository.save(existingBooking);
+              return updatedBookingInfoEntity;
+		}
+		 
+		
+		return null;
 	}
 
 }

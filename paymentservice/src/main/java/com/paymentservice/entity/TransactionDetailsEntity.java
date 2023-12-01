@@ -1,5 +1,6 @@
 package com.paymentservice.entity;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,14 +17,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TransactionDetailsEntity {
-	  @Id
+	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private int transactionId;
 
 	    private String paymentMode;
-
+	   
+	   
 	    @Column(nullable = false)
-	    private Long bookingId;
+	    private int bookingId;
 
 	    private String upiId;
 

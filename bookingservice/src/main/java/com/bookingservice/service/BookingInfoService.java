@@ -6,5 +6,6 @@ import com.bookingservice.entity.BookingInfoEntity;
 public interface BookingInfoService {
 
 	public BookingInfoResponseDTO getBookingQuote(BookingInfoEntity bookingInfoEntity);
+	public BookingInfoEntity updateTransactionId(int bookingId, int transactionId);
 	
 }

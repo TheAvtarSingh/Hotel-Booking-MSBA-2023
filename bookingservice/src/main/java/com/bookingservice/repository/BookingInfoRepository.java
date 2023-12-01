@@ -12,5 +12,7 @@ import java.util.List;
 public interface BookingInfoRepository extends JpaRepository<BookingInfoEntity, Integer> {
     List<BookingInfoEntity> findAllByAadharNumberAndFromDateLessThanEqualAndToDateGreaterThanEqual(
             String aadharNumber, Date fromDate, Date toDate);
+    
+    BookingInfoEntity findByBookingId(int bookingId);
 
 }
