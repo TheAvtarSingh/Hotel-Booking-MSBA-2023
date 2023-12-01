@@ -10,79 +10,68 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.reactive.function.client.WebClient;
 
-import com.paymentservice.dto.BookingInfoDTO;
+import com.paymentservice.customexception.TransactionsException;
 import com.paymentservice.entity.TransactionDetailsEntity;
-import com.paymentservice.exception.classes.TransactionsException;
-import com.paymentservice.logicClasses.RequestValidator;
 import com.paymentservice.service.TransactionService;
+import com.paymentservice.validator.RequestValidator;
 
 @RestController
 @RequestMapping("/payment/")
 public class TransactionController {
-	
+
 	@Autowired
 	private TransactionService transactionService;
-	
+
 	@Autowired
 	private RequestValidator requestValidator;
 
-
-
 	@PostMapping("/transaction")
-	public ResponseEntity<?> performTransaction(@RequestBody @Validated TransactionDetailsEntity newTransaction){
-		
-		
-		
-		 try {
-			 
-			   requestValidator.validateTransactionRequest(newTransaction);
+//	Perform Transaction
+	public ResponseEntity<?> performTransaction(@RequestBody @Validated TransactionDetailsEntity newTransaction) {
 
-			 
-	            ResponseEntity<Integer> response = transactionService.performTransaction(newTransaction);
-	            
-	      
-	            
+		try {
+// Check Request Format
+			requestValidator.validateTransactionRequest(newTransaction);
+// Perform Transaction
+			ResponseEntity<Integer> response = transactionService.performTransaction(newTransaction);
 
-	            // Check if the response status is CONFLICT (409)
-	            if (response.getStatusCode() == HttpStatus.CONFLICT) {
-	                return new ResponseEntity<>(response.getBody(),HttpStatus.OK); 
-	            }
+			// Check if the response status is CONFLICT (409) - If already Data Existed
+			if (response.getStatusCode() == HttpStatus.CONFLICT) {
+//				Get saved Id
+				return new ResponseEntity<>(response.getBody(), HttpStatus.OK);
+			}
 
-	            // Return the response with the generated transaction ID and 201 status code
-	            return new ResponseEntity<>(response.getBody(), HttpStatus.CREATED);
+			// Return the response with the generated transaction ID and 201 status code
+			return new ResponseEntity<>(response.getBody(), HttpStatus.CREATED);
 
-	        } catch (Exception e) {
-	            // Handle other exceptions if needed
-	            throw e;
-	        }
+		} catch (Exception e) {
+			// Handler other exceptions if needed
+			throw e;
+		}
 	}
-	
-	
+
+//	Find Transaction by Transaction Id - Get Method
 	@GetMapping("/transaction/{transactionId}")
-	public ResponseEntity<?> findTransactionById(@PathVariable int transactionId ){
-			TransactionDetailsEntity existingEntry = transactionService.findTransactionById(transactionId);
-			if (existingEntry!=null) {
-				return new ResponseEntity<>(existingEntry,HttpStatus.OK);
-			}
-			throw new TransactionsException("No Transaction Exist for Given Data !!", HttpStatus.OK);
+	public ResponseEntity<?> findTransactionById(@PathVariable int transactionId) {
+		TransactionDetailsEntity existingEntry = transactionService.findTransactionById(transactionId);
+		if (existingEntry != null) {
+			return new ResponseEntity<>(existingEntry, HttpStatus.OK);
+		}
+		throw new TransactionsException("No Transaction Exist for Given Data !!", HttpStatus.OK);
 	}
-	
+// Find Transaction By Transction Entity Body - POST Method
 	@PostMapping("/findtransaction")
-	public ResponseEntity<?>findTransaction(@RequestBody TransactionDetailsEntity newTransaction){
-		
-			Integer transactionId = transactionService.findTransactionID(newTransaction);
-			
-			if (transactionId!=null) {
-			 return new ResponseEntity<>(transactionId, HttpStatus.OK);
-			}else {
-				return new ResponseEntity<>("Not Found", HttpStatus.OK);
-			}
-			
-		
+	public ResponseEntity<?> findTransaction(@RequestBody TransactionDetailsEntity newTransaction) {
+
+		Integer transactionId = transactionService.findTransactionID(newTransaction);
+
+		if (transactionId != null) {
+			return new ResponseEntity<>(transactionId, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>("Not Found", HttpStatus.OK);
+		}
+
 	}
-	
-	
-	
+
 }

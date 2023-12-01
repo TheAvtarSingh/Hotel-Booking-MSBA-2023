@@ -1,10 +1,10 @@
-package com.paymentservice.logicClasses;
+package com.paymentservice.validator;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
+import com.paymentservice.customexception.TransactionsException;
 import com.paymentservice.entity.TransactionDetailsEntity;
-import com.paymentservice.exception.classes.TransactionsException;
 
 @Component
 public class RequestValidator {
@@ -15,7 +15,7 @@ public class RequestValidator {
             throw new TransactionsException("Invalid Booking ID in Request Body", HttpStatus.BAD_REQUEST);
         }
 
-        // Add more custom validations as needed
+        // Payment Mode Valid
         if (newTransaction.getPaymentMode() == null || newTransaction.getPaymentMode().isEmpty()) {
             throw new TransactionsException("Payment Mode cannot be empty", HttpStatus.BAD_REQUEST);
         }

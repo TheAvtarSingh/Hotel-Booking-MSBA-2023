@@ -9,7 +9,8 @@ import java.util.List;
 
 @Repository
 public interface TransactionRepository extends JpaRepository<TransactionDetailsEntity, Integer> {
+//	Find Transaction By Booking Id
 TransactionDetailsEntity findByBookingId(int bookingId);
-
+// Find Transaction By Transaction Id
 TransactionDetailsEntity findByTransactionId(int transactionId);
 }

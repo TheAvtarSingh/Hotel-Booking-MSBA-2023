@@ -1,4 +1,4 @@
-package com.paymentservice.exception.handler;
+package com.bookingservice.customexception;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -7,14 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
-
-import com.paymentservice.exception.classes.TransactionsException;
- 
+import org.springframework.web.reactive.result.method.annotation.ResponseEntityExceptionHandler;
 
 @RestControllerAdvice
-public class TransactionExceptionHandler {
-	@ExceptionHandler(TransactionsException.class)
-    public ResponseEntity<Object> handleBookingConflict(TransactionsException ex, WebRequest request) {
+public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
+
+    @ExceptionHandler(BookingConflictException.class)
+    public ResponseEntity<Object> handleBookingConflict(BookingConflictException ex, WebRequest request) {
         Map<String, Object> body = new LinkedHashMap<String, Object>();
        
 
@@ -23,3 +22,4 @@ public class TransactionExceptionHandler {
         return new ResponseEntity<>(body, ex.getStatus());
     }
 }
+

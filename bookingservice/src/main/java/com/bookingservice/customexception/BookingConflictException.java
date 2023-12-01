@@ -1,4 +1,4 @@
-package com.bookingservice.exceptions.classes;
+package com.bookingservice.customexception;
 
 import org.springframework.http.HttpStatus;
 

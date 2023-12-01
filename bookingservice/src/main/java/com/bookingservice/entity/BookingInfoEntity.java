@@ -1,7 +1,6 @@
 package com.bookingservice.entity;
 
 import java.util.Date;
- 
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,30 +12,32 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+// Booking Entity For Booking Table
+
 @Entity
 @Table(name = "Booking")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookingInfoEntity {
-	    @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private int bookingId;
-	 
-	    private Date fromDate;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int bookingId;
 
-	    private Date toDate;
+	private Date fromDate;
 
-	    private String aadharNumber;
+	private Date toDate;
 
-	    private int numOfRooms;
+	private String aadharNumber;
 
-	    private String roomNumbers;
-	    
-	    @Column(nullable = false)
-	    private int roomPrice;
+	private int numOfRooms;
 
-	    private int transactionId=0;
+	private String roomNumbers;
 
-	    private Date bookedOn;
+	@Column(nullable = false)
+	private int roomPrice;
+
+	private int transactionId = 0;
+
+	private Date bookedOn;
 }

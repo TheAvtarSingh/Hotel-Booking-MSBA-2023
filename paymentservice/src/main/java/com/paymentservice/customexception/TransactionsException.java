@@ -1,4 +1,4 @@
-package com.paymentservice.exception.classes;
+package com.paymentservice.customexception;
 
 import org.springframework.http.HttpStatus;
 

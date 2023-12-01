@@ -6,6 +6,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
+// This Class is Made for Sending Out Hidden Response to Post Request Sending/Recieving BookingInfoEntity
 public class BookingInfoResponseDTO {
 private int id;
 private Date fromDate;
