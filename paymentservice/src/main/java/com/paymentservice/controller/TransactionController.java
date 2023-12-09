@@ -51,14 +51,16 @@ public class TransactionController {
 		}
 	}
 
-//	Find Transaction by Transaction Id - Get Method
+// Endpoint 4 -	Find Transaction by Transaction Id - Get Method
 	@GetMapping("/transaction/{transactionId}")
 	public ResponseEntity<?> findTransactionById(@PathVariable int transactionId) {
+		
+		requestValidator.validateTransactionParameters(transactionId);
 		TransactionDetailsEntity existingEntry = transactionService.findTransactionById(transactionId);
 		if (existingEntry != null) {
 			return new ResponseEntity<>(existingEntry, HttpStatus.OK);
 		}
-		throw new TransactionsException("No Transaction Exist for Given Data !!", HttpStatus.OK);
+		throw new TransactionsException("No Transaction Exist for Given Data !!", HttpStatus.NOT_FOUND);
 	}
 // Find Transaction By Transction Entity Body - POST Method
 	@PostMapping("/findtransaction")

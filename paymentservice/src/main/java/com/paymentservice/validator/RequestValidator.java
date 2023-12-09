@@ -33,4 +33,12 @@ public class RequestValidator {
         	}
         return true;
     }
+    
+    public void validateTransactionParameters(int transactionId) {
+    	if (transactionId <=0) {
+
+            throw new TransactionsException("Transaction Id is not valid !!", HttpStatus.BAD_REQUEST);
+		}
+    	return ;
+    }
 }
