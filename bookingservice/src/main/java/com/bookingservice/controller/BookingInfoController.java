@@ -22,6 +22,8 @@ import com.bookingservice.dto.BookingInfoResponseDTO;
 import com.bookingservice.dto.TransactionRequestDTO;
 import com.bookingservice.entity.BookingInfoEntity;
 import com.bookingservice.service.BookingInfoService;
+import com.bookingservice.validator.RequestValidator;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/hotel")
@@ -33,6 +35,9 @@ public class BookingInfoController {
 	/*
 	 * @Autowired private WebClient.Builder webClientBuilder;
 	 */
+	
+	@Autowired
+ 	private RequestValidator validator;
 
 	@Autowired
 	private RestTemplate restTemplate;
@@ -68,18 +73,16 @@ public class BookingInfoController {
 	
 	@PostMapping("/booking/{bookingId}/transaction")
 	public ResponseEntity<?> confirmBooking(@PathVariable int bookingId,
-			@RequestBody TransactionRequestDTO confirmTransaction) {
+			@Valid	@RequestBody TransactionRequestDTO confirmTransaction) {
 //		If Url and Request Body are Not Same
 		if (bookingId != confirmTransaction.getBookingId()) {
 			throw new BookingConflictException("Booking ID Should be Same in Both Body Request and Url Path !!",
 					HttpStatus.BAD_REQUEST);
 		}
+		
+		validator.validateTransactionRequest(confirmTransaction);
 
-//		Checking Payment Mode and Throwing Exception
-		if ((!confirmTransaction.getPaymentMode().equalsIgnoreCase("UPI"))
-				&& (!confirmTransaction.getPaymentMode().equalsIgnoreCase("CARD"))) {
-			throw new BookingConflictException("Invalid Form of Payment !!", HttpStatus.BAD_REQUEST);
-		}
+
 		
 //		Inter-Service Communication
 
