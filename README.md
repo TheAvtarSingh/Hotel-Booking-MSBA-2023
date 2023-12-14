@@ -22,7 +22,8 @@ This project serves as a basic template for a hotel booking application. It incl
 ![MSBA Proj](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/7caaf70a-0300-4f2c-800f-3eda719d1a67.png)
 
 #### High Level Diagram 
-![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/31988f7c-cce8-4542-9ea2-e75efd70ea8c.png)
+![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/1537cb98-3b7d-4a62-a850-c385b96678e1)
+
 
 [Miro Board Link](https://miro.com/app/board/uXjVNCqSVsQ=/?share_link_id=904572644404)
 
@@ -39,19 +40,19 @@ Make sure you have the following installed on your system:
 
 ##### 1. PostMan File
 
-- **File**: [Major Project MSBA.postman_collection](/Major_Project_MSBA.postman_collection)
+- **File**: [Major Project MSBA.postman_collection](Major_Project_MSBA.postman_collection.json)
 
 This file contains the SQL script for creating the necessary tables and schema for the MySQL database used in this project.
 
 ##### 2. Postman Environments
 
-- **File**: [MSB-AUTH-CREDENTIALS.postman_environment](/MSB-AUTH-CREDENTIALS.postman_environment)
+- **File**: [MSB-AUTH-CREDENTIALS.postman_environment](MSB-AUTH-CREDENTIALS.postman_environment.json)
 
 If you prefer using Postman for testing APIs, you can import this collection to quickly set up and test the endpoints provided by the hotel booking application.
 
 ##### 3. MYSQL Data
 
-- **File**: [database_setup.sql](/database_setup.sql)
+- **File**: [database_setup.sql](database_setup.sql)
 
 This SQL script includes some sample data that you can use to populate the database for testing the functionality of the hotel booking application.
 
