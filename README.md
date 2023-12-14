@@ -365,6 +365,13 @@ The application provides RESTful APIs for managing hotels and bookings. You can 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+#### ***Console Message*** 
+
+![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/5cd67506-846d-4591-a82b-030fc6c189e1)
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 #### ***Database*** 
 
 ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/e758d1c1-113b-4080-9dbc-5cc48f2baa60)
@@ -410,8 +417,15 @@ The application provides RESTful APIs for managing hotels and bookings. You can 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Feel free to contribute to the project by opening issues or submitting pull requests. Your contributions are welcome!
+#### 2.3 Configure this service to run on port number 8083. 
 
+![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/4d81e365-43a2-4273-a1a5-50c39a9da3ee)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#### 2.4 Configure the service as a Eureka client
+
+![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/5e2a6bb5-2dc4-4a4e-92fc-4fd6ea7e7281)
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
