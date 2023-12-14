@@ -1,0 +1,211 @@
+{
+	"info": {
+		"_postman_id": "62781e2a-f7c0-44d0-82ea-813baa143844",
+		"name": "Major Project MSBA",
+		"description": "Major Project - MicroServices Based Application - Spring Boot - Java",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30230664",
+		"_collection_link": "https://lively-satellite-318796.postman.co/workspace/Team-Workspace~cafa4e63-8b40-4a44-807a-7ce97ebad7ec/collection/30230664-62781e2a-f7c0-44d0-82ea-813baa143844?action=share&source=collection_link&creator=30230664"
+	},
+	"item": [
+		{
+			"name": "Booking Service",
+			"item": [
+				{
+					"name": "BookHotel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fromDate\": \"2023-06-20\",\n  \"toDate\": \"2023-06-26\",\n  \"aadharNumber\": \"123456789015\",\n  \"numOfRooms\": 2\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9191/hotel/booking",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"hotel",
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "StoreTransactionIdinBooking",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"bookingId\": 1, \n  \"paymentMode\": \"UPI\",\n  \"upiId\": \"user@upi\",\n  \"cardNumber\": \"1234567890123456\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9191/hotel/booking/1/transaction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"hotel",
+								"booking",
+								"1",
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBookingByTransactionID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9191/hotel/getBookingByTransId/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"hotel",
+								"getBookingByTransId",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment Service",
+			"item": [
+				{
+					"name": "performTransaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"bookingId\":1, \n  \"paymentMode\": \"UPI\",\n  \"upiId\": \"user@upi\",\n  \"cardNumber\": \"1234567890123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9191/payment/transaction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"payment",
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findTransactionById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9191/payment/transaction/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9191",
+							"path": [
+								"payment",
+								"transaction",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{password}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{username}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
