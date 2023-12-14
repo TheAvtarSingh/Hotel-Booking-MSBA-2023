@@ -27,6 +27,9 @@ This project serves as a basic template for a hotel booking application. It incl
 
 [Miro Board Link](https://miro.com/app/board/uXjVNCqSVsQ=/?share_link_id=904572644404)
 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ## Prerequisites
 
 Make sure you have the following installed on your system:
@@ -35,6 +38,8 @@ Make sure you have the following installed on your system:
 - Maven
 - Spring Boot
 - MySQL or another compatible database (for data storage)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Project Files
 
@@ -50,6 +55,7 @@ This file contains the SQL script for creating the necessary tables and schema f
 
 If you prefer using Postman for testing APIs, you can import this collection to quickly set up and test the endpoints provided by the hotel booking application.
 
+
 ##### 3. MYSQL Data
 
 - **File**: [database_setup.sql](database_setup.sql)
@@ -58,10 +64,12 @@ This SQL script includes some sample data that you can use to populate the datab
 
 Feel free to explore and use these files according to your project requirements. 
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ## Installation
 ***Follow Proper Procedure to run Smoothly***
 
-1. ##### Clone the repository:
+1. ##### Clone the repository: 
    
    Find the Link ( You Can Use Https/SSH)
 
@@ -113,18 +121,18 @@ Feel free to explore and use these files according to your project requirements.
    
    ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/f7b5e23d-48e5-4562-a496-971acb76ad85.png)
 
-3.  #####  Setup POSTMAN:
+3.  #####  Setup POSTMAN:  - -----------------------------------------------------------------
 
-   3.a) Import the Collection File
+   3.a) Import the Collection File  - -----------------------------------------------------------------
    ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/ae0feb1a-3738-4b88-82e4-393fd8550d94.png)
 
-   3.b) Choose File
+   3.b) Choose File  - -----------------------------------------------------------------
    ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/758e5549-1be9-44cc-9d0f-5bfb23aa2a99.png)
 
-   3.c) Collection Page
+   3.c) Collection Page  - -----------------------------------------------------------------
    ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/7aecb806-e678-4684-9327-07ed0119458c.png)
 
-   3.d) Import Security Credentails
+   3.d) Import Security Credentails  - -----------------------------------------------------------------
    
    ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/67adb19e-52d2-46d4-afe6-58057dbb652d.png)
    
@@ -132,31 +140,32 @@ Feel free to explore and use these files according to your project requirements.
    
    ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/50fe1b25-8b1e-4a48-ae61-4fa9d473c904.png)
 
-   3.e) Choose Proper Environment
+   3.e) Choose Proper Environment  - -----------------------------------------------------------------
    ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/e7acf932-a2e0-4d29-8f66-27f3a4c05ede.png)
 
-4.  #####  Run the application:
+4.  #####  Run the application:  - -----------------------------------------------------------------
    
    ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/a48125c0-50ed-4247-a18c-116e7e23bde4.png)
 
    4.a) #####  Follow Order to Run Application Without Errors :
    
-   ***1. Start Server***
+   ***1. Start Server*** - -----------------------------------------------------------------
    
    ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/549c76cf-07c3-4c24-bf4a-217bac322a20.png)
 
-   ***2. Start Gateway***
+   ***2. Start Gateway*** - -----------------------------------------------------------------
    
    ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/9c9100ec-6d6b-4ef2-bd63-bc6e0c5324d1.png)
 
-   ***1. Start Both Services***
+   ***1. Start Both Services*** - -----------------------------------------------------------------
    
    ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/3b664ada-bb49-44e3-a985-969eb01fa37e.png)
 
-5. ##### Verify on  `https://localhost:8761`
+5. ##### Verify on  `https://localhost:8761` - -----------------------------------------------------------------
 
    ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/0b9f386e-852c-4af9-8c0f-d44a037d4f8e)
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Usage
 
@@ -248,7 +257,7 @@ The application provides RESTful APIs for managing hotels and bookings. You can 
 
 ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/52377cbe-3ed1-4f85-8459-6847620d690f)
 
-#### 1.4 ##### Configure the hotel booking service as Eureka Client
+#### 1.4 Configure the hotel booking service as Eureka Client
 
 [Main File](bookingservice/src/main/java/com/bookingservice/BookingserviceApplication.java)
 
