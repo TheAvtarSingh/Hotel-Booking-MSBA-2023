@@ -166,17 +166,17 @@ The application provides RESTful APIs for managing hotels and bookings. You can 
 
 #### 1. Booking Service : [Booking Service](bookingservice)
 
-1.1. #### Logic Class (To Calculate Price and Room Numbers) - [Class](bookingservice/src/main/java/com/bookingservice/logic/BusinessLogicMethodClass.java)
-1.2. #### Model Classes - [BookingInfoEntity](bookingservice/src/main/java/com/bookingservice/entity/BookingInfoEntity.java)
-1.3. #### Controller -
+#### 1.1. Logic Class (To Calculate Price and Room Numbers) - [Class](bookingservice/src/main/java/com/bookingservice/logic/BusinessLogicMethodClass.java)
+#### 1.2. Model Classes - [BookingInfoEntity](bookingservice/src/main/java/com/bookingservice/entity/BookingInfoEntity.java)
+#### 1.3. #### Controller -
 
-- **Endpoint 1: POST /booking**
+### **Endpoint 1: POST /booking**
   
-• URI: /booking
-• HTTP METHOD: POST
-• RequestBody: fromDate, toDate,aadharNumber,numOfRooms
-• Response Status: Created
-• Response: ResponseEntity<BookingInfoEntity>
+#### • URI: /booking
+#### • HTTP METHOD: POST
+#### • RequestBody: fromDate, toDate,aadharNumber,numOfRooms
+#### • Response Status: Created
+#### • Response: ResponseEntity<BookingInfoEntity>
 
 ***Working*** - 
 
@@ -194,12 +194,12 @@ The application provides RESTful APIs for managing hotels and bookings. You can 
 
 ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/e2582e28-2a91-42a5-ab3e-8a4c0a581679)
 
-- **Endpoint 2: POST booking/{bookingId}/transaction**
-• URI: /booking/{bookingId}/transaction
-• HTTP METHOD: POST
-• PathVariable : int
-• RequestBody : paymentMode, bookingId, upiId,cardNumber
-• Response: ResponseEntity<BookingInfoEntity>
+### - **Endpoint 2: POST booking/{bookingId}/transaction**
+#### • URI: /booking/{bookingId}/transaction
+#### • HTTP METHOD: POST
+#### • PathVariable : int
+#### • RequestBody : paymentMode, bookingId, upiId,cardNumber
+#### • Response: ResponseEntity<BookingInfoEntity>
 
 ***Working*** - 
 
