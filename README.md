@@ -164,7 +164,7 @@ The application provides RESTful APIs for managing hotels and bookings. You can 
 
 ## Endpoints
 
-#### 1. Booking Service : [Booking Service](bookingservice)
+## 1. Booking Service : [Booking Service](bookingservice)
 
 #### 1.1. Logic Class (To Calculate Price and Room Numbers) - [Class](bookingservice/src/main/java/com/bookingservice/logic/BusinessLogicMethodClass.java)
 #### 1.2. Model Classes - [BookingInfoEntity](bookingservice/src/main/java/com/bookingservice/entity/BookingInfoEntity.java)
@@ -178,81 +178,134 @@ The application provides RESTful APIs for managing hotels and bookings. You can 
 #### • Response Status: Created
 #### • Response: ResponseEntity<BookingInfoEntity>
 
-***Working*** - 
+#### ***Working*** - 
 
 ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/7e1fbb0a-7969-498e-8d3d-728f1cdc2347)
 
-***Database***
+#### ***Database***
 
 ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/26a5e512-413a-496f-8f7e-e1843e8dc4cf)
 
-***Exception 1*** - If Any Of One Field is Missing
+#### ***Exception 1*** - If Any Of One Field is Missing
 
 ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/5c3474df-f2db-4815-805b-8da3d0ab2ca3)
 
-***Exception 2*** - If Data within Same Date and AAdhar Number is Present
+#### ***Exception 2*** - If Data within Same Date and AAdhar Number is Present
 
 ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/e2582e28-2a91-42a5-ab3e-8a4c0a581679)
 
-### - **Endpoint 2: POST booking/{bookingId}/transaction**
+### **Endpoint 2: POST booking/{bookingId}/transaction**
 #### • URI: /booking/{bookingId}/transaction
 #### • HTTP METHOD: POST
 #### • PathVariable : int
 #### • RequestBody : paymentMode, bookingId, upiId,cardNumber
 #### • Response: ResponseEntity<BookingInfoEntity>
 
-***Working*** - 
+#### ***Working*** 
 
 ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/99144215-1378-4bb5-bca4-ecc59887515a)
 
-***Database***
+#### ***Database***
 
 ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/2227b006-fd18-4dd9-a4ac-756e94bde5f9)
 
 ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/7e68d737-9254-4aa1-a1ba-7b90f98966a6)
 
-***Exception 1*** - If the user gives any other input apart from “UPI” or “CARD” 
+#### ***Exception 1*** - If the user gives any other input apart from “UPI” or “CARD” 
 
 ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/59085d9e-dda2-4065-820e-e78fd00eec7a)
 
-***Exception 2*** -  If no transactions exist for the Booking Id passed to this endpoint 
+#### ***Exception 2*** -  If no transactions exist for the Booking Id passed to this endpoint 
 
 ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/3f3e3286-085f-4602-b9e0-b4eceb27a860)
 
-***Exception 3*** -  If no Payment form is given 
+#### ***Exception 3*** -  If no Payment form is given 
 
 ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/24fa71d5-549f-442a-baf1-485e99c44d7d)
 
-***Exception 4*** -  If no Payment details is given for payment form
+#### ***Exception 4*** -  If no Payment details is given for payment form
 
 ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/ccea3c29-6574-46b5-be37-a73fe36460c6)
 
 ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/d00d5cab-2b3a-402e-83b8-d00116e422fd)
 
-***Exception 5*** -  If Booking Id is different in Path Variable and Request Body
+#### ***Exception 5*** -  If Booking Id is different in Path Variable and Request Body
 
 ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/f6a3d7b2-e68b-4715-b109-45782250a3fa)
 
-1.3 #####Configure this service to run on port number 8081.
+### **Endpoint 3: GET hotel/getBookingByTransId/{transactionId}**
+#### • URI: hotel/getBookingByTransId/{transactionId}
+#### • HTTP METHOD: GET
+#### • PathVariable : int
+#### • Response: ResponseEntity<BookingInfoEntity>
+
+#### ***Working*** 
+
+![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/5e8e486f-f3e5-452f-af46-e56c296bbb34)
+
+
+#### 1.3 Configure this service to run on port number 8081.
 
 ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/52377cbe-3ed1-4f85-8459-6847620d690f)
 
-1.4 Configure the hotel booking service as Eureka Client
+#### 1.4 ##### Configure the hotel booking service as Eureka Client
 
 [Main File](bookingservice/src/main/java/com/bookingservice/BookingserviceApplication.java)
 
 ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/038855e8-9f2c-4c0b-a6f7-e65e9c99215b)
 
 
-### Bookings
+## 2. Payment Service : [Payment Service](paymentservice)
 
-- **GET /bookings**: Get a list of all bookings.
-- **GET /bookings/{id}**: Get details of a specific booking by ID.
-- **POST /bookings**: Create a new booking.
-- **PUT /bookings/{id}**: Update details of a specific booking by ID.
-- **DELETE /bookings/{id}**: Delete a specific booking by ID.
+#### 2.1. Model Classes - [TransactionDetailsEntity](paymentservice/src/main/java/com/paymentservice/entity/TransactionDetailsEntity.java)
+#### 2.2. Controller -
 
-## Contributing
+***Note: This endpoint will be called by the ‘endpoint 2’ of the Booking service***
+
+### **Endpoint 1: POST /transaction**
+  
+#### • URI: /transaction
+#### • HTTP METHOD: POST
+#### • RequestBody: paymentMode, bookingId, upiId, cardNumber
+#### • Response Status: Created
+#### • Response: ResponseEntity<transactionId>
+
+#### ***Working*** 
+
+![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/7b0f274a-0f31-4da1-a181-a99d8645bac9)
+
+#### ***Database***
+
+![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/e758d1c1-113b-4080-9dbc-5cc48f2baa60)
+
+#### ***Exception 1*** - If the user gives any other input apart from “UPI” or “CARD” 
+
+![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/d9303ce7-e7b3-4c05-ac32-7841a1a26384)
+
+#### ***Exception 2*** -  If no Payment form is given 
+
+![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/e660d085-8c0c-4f1f-8f08-3ca1a50397ea)
+
+#### ***Exception 3*** -   If no Payment details is given for payment form
+
+![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/032b56ea-4669-4066-9d06-543509b83c5f)
+
+### **Endpoint 2: GET /transaction/{transactionId}**
+  
+#### • URI: /transaction/{transactionId}
+#### • HTTP METHOD: GET
+#### • Path Variable: int
+#### • Response Status: OK
+#### • Response: ResponseEntity<TransactionDetailsEntity>
+
+#### ***Working*** 
+
+![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/8f97768e-7ab1-4460-995b-3af58b095864)
+
+#### ***Exception 1*** - If transaction Not Exists 
+
+![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/cb23d491-16c6-4c53-b9ec-6bf10f48f62a)
+
 
 Feel free to contribute to the project by opening issues or submitting pull requests. Your contributions are welcome!
 
