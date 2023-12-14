@@ -1,12 +1,21 @@
 package com.bookingservice.service;
 
+import com.bookingservice.customexception.BookingConflictException;
 import com.bookingservice.dto.BookingInfoResponseDTO;
+import com.bookingservice.dto.TransactionRequestDTO;
 
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.bookingservice.entity.BookingInfoEntity;
 import com.bookingservice.logic.BusinessLogicMethodClass;
@@ -21,6 +30,9 @@ public class BookingInfoServiceImplementation implements BookingInfoService {
 //	Business Logic class - Rooms and Pricing
 	@Autowired
 	private BusinessLogicMethodClass logicMethodsClass;
+	
+	@Autowired
+	private RestTemplate restTemplate;
 
 //	Object of Separate Class Containing complete logic -- Replaced By Component[Optional]
 //	BusinessLogicMethodClass logicMethodsClass = new BusinessLogicMethodClass();
@@ -57,6 +69,28 @@ public class BookingInfoServiceImplementation implements BookingInfoService {
 		return response;
 
 	}
+	
+	@Override
+	public ResponseEntity<Integer> performPayment(TransactionRequestDTO confirmTransaction) {
+		// TODO Auto-generated method stub
+		String transactionServiceUrl = "http://localhost:9191/payment";
+		String transactionEndpoint = "/transaction";
+//Doing Transaction - EndPoint - 3 
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		HttpEntity<TransactionRequestDTO> requestEntity = new HttpEntity<>(confirmTransaction, headers);
+
+//		WebClient transactionWebClient = webClientBuilder.baseUrl(transactionServiceUrl).build();
+
+		ResponseEntity<Integer> transactionIDResponse = restTemplate.exchange(
+				transactionServiceUrl + transactionEndpoint, HttpMethod.POST, requestEntity, Integer.class);
+if(transactionIDResponse.getStatusCode().is2xxSuccessful()) {
+	return transactionIDResponse;
+}
+throw new BookingConflictException("Unable to Perform Transaction !!",
+		HttpStatus.BAD_REQUEST);
+	}
 
 	@Override
 	public BookingInfoEntity updateTransactionId(int bookingId, int transactionId) {
@@ -82,5 +116,7 @@ public class BookingInfoServiceImplementation implements BookingInfoService {
 		return null;
 
 	}
+
+
 
 }

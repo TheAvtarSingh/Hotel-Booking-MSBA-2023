@@ -39,8 +39,7 @@ public class BookingInfoController {
 	@Autowired
  	private RequestValidator validator;
 
-	@Autowired
-	private RestTemplate restTemplate;
+
 // Endpoint - 1 -- Get Booking Details 
 	@PostMapping("/booking")
 	public ResponseEntity<BookingInfoResponseDTO> bookHotel(@Validated @RequestBody BookingInfoEntity newBookingData) {
@@ -80,7 +79,9 @@ public class BookingInfoController {
 					HttpStatus.BAD_REQUEST);
 		}
 		
+		
 		validator.validateTransactionRequest(confirmTransaction);
+		
 
 
 		
@@ -88,18 +89,6 @@ public class BookingInfoController {
 
 		try {
 
-			String transactionServiceUrl = "http://localhost:9191/payment";
-			String transactionEndpoint = "/transaction";
-// Doing Transaction - EndPoint - 3 
-			HttpHeaders headers = new HttpHeaders();
-			headers.setContentType(MediaType.APPLICATION_JSON);
-
-			HttpEntity<TransactionRequestDTO> requestEntity = new HttpEntity<>(confirmTransaction, headers);
-
-//			WebClient transactionWebClient = webClientBuilder.baseUrl(transactionServiceUrl).build();
-
-			ResponseEntity<Integer> transactionIDResponse = restTemplate.exchange(
-					transactionServiceUrl + transactionEndpoint, HttpMethod.POST, requestEntity, Integer.class);
 
 			/*
 			 * ResponseEntity<Integer> transactionIDResponse = transactionWebClient .post()
@@ -108,11 +97,15 @@ public class BookingInfoController {
 			 * .toEntity(Integer.class) .block();
 			 */
 
-//			System.out.println(transactionIDResponse.getBody());
+//			System.out.println(transactionIDResponse.getBody())
+			
+		ResponseEntity<Integer> transactionId =	bookingService.performPayment(confirmTransaction);
 
-			if (transactionIDResponse.getStatusCode().is2xxSuccessful()) {
+			
 
-				BookingInfoEntity updateResponse = updateTransactionId(bookingId, transactionIDResponse.getBody());
+			if (transactionId.getStatusCode().is2xxSuccessful()) {
+
+				BookingInfoEntity updateResponse = updateTransactionId(bookingId, transactionId.getBody());
 
 				String message = "Booking confirmed for user with aadhaar number: " + updateResponse.getAadharNumber()
 						+ " | " + "Here are the booking details: " + updateResponse.toString();

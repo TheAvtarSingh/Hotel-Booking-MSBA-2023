@@ -48,4 +48,12 @@ public class RequestValidator {
 		}
     	return ;
     }
+    
+    public void validateBookingId(int newBookingId,int existingBookingId) {
+    	if(newBookingId != existingBookingId) {
+    		throw new BookingConflictException("Booking ID Should be Same in Both Body Request and Url Path !!",
+					HttpStatus.BAD_REQUEST);
+    	}
+    	return ;
+    }
 }
