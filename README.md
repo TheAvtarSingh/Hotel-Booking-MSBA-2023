@@ -79,7 +79,7 @@ Feel free to explore and use these files according to your project requirements.
    
    ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/0582c04e-0aed-4cd5-a982-0c22b2ac6a78.png)
 
-   ### 1.1.a) Setup Database 
+   1.1.a) Setup Database 
    ![image](https://github.com/TheAvtarSingh/Hotel-Booking-MSBA-2023/assets/88712571/8025fa34-0f15-4ed4-b91a-8365bf267593.png)
 
 2. #####  Setup Your IDE (I am Using `Spring Tool Suite`) :
@@ -168,7 +168,7 @@ The application provides RESTful APIs for managing hotels and bookings. You can 
 
 #### 1.1. Logic Class (To Calculate Price and Room Numbers) - [Class](bookingservice/src/main/java/com/bookingservice/logic/BusinessLogicMethodClass.java)
 #### 1.2. Model Classes - [BookingInfoEntity](bookingservice/src/main/java/com/bookingservice/entity/BookingInfoEntity.java)
-#### 1.3. #### Controller -
+#### 1.3. Controller -
 
 ### **Endpoint 1: POST /booking**
   
