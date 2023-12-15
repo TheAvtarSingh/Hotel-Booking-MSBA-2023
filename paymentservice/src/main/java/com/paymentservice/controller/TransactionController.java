@@ -39,7 +39,7 @@ public class TransactionController {
 			// Check if the response status is CONFLICT (409) - If already Data Existed
 			if (response.getStatusCode() == HttpStatus.CONFLICT) {
 //				Get saved Id
-				return new ResponseEntity<>(response.getBody(), HttpStatus.OK);
+				return new ResponseEntity<>(response.getBody(), HttpStatus.CREATED);
 			}
 
 			// Return the response with the generated transaction ID and 201 status code

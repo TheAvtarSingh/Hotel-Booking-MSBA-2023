@@ -31,7 +31,15 @@ public class RequestValidator {
         	    (newTransaction.getCardNumber() == null || newTransaction.getCardNumber().isEmpty())) {
         	    throw new TransactionsException("Card Number is required for CARD payments", HttpStatus.BAD_REQUEST);
         	}
+        
+//		Checking Payment Mode and Throwing Exception
+		if ((!newTransaction.getPaymentMode().equalsIgnoreCase("UPI"))
+				&& (!newTransaction.getPaymentMode().equalsIgnoreCase("CARD"))) {
+			throw new TransactionsException("Invalid Form of Payment !!", HttpStatus.BAD_REQUEST);
+		}
         return true;
+        
+
     }
     
     public void validateTransactionParameters(int transactionId) {
