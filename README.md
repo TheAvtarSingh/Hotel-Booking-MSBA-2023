@@ -242,6 +242,19 @@ The application provides RESTful APIs for managing hotels and bookings. You can 
 
 ## Endpoints
 
+|**Endpoint**|**URI**|**HTTP Method**|**Request Body**|**Response Status**|**Response**|**Description**|
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+|POST /booking|/booking|POST|fromDate, toDate, aadharNumber, numOfRooms|Created|ResponseEntity<BookingInfoEntity>|Creates a new booking with the provided information. If successful, returns the booking details.|
+|POST booking/{bookingId}/transaction|/booking/{bookingId}/transaction|POST|paymentMode, bookingId, upiId, cardNumber|-|ResponseEntity<BookingInfoEntity>|Initiates a payment transaction for the specified booking. If successful, returns the updated booking details.|
+|GET hotel/getBookingByTransId/{transactionId}|hotel/getBookingByTransId/{transactionId}|GET|transactionId|-|ResponseEntity<BookingInfoEntity>|Retrieves booking details based on the provided transaction ID.|
+
+
+|**Endpoint**|**URI**|**HTTP Method**|**Request Body**|**Response Status**|**Response**|**Description**|
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+|POST /transaction|/transaction|POST|paymentMode, bookingId, upiId, cardNumber|Created|ResponseEntity<TransactionDetailsEntity>|Processes a payment transaction for a booking. If successful, returns the transaction details.|
+|GET /transaction/{transactionId}|/transaction/{transactionId}|GET|transactionId|OK|ResponseEntity<TransactionDetailsEntity>|Retrieves transaction details based on the provided transaction ID.|
+
+
 ## 1. Booking Service : [Booking Service](bookingservice)  
 
 #### 1.1. Logic Class (To Calculate Price and Room Numbers) - [Class](bookingservice/src/main/java/com/bookingservice/logic/BusinessLogicMethodClass.java)
