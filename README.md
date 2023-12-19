@@ -43,20 +43,38 @@ Make sure you have the following installed on your system:
 
 ## Project Files
 
-##### 1. PostMan File
+##### 1. Project Documentation
+
+- **File**: [Mini_Project_2.docx](Project_Documentation/Mini_Project_2.docx)
+
+This file contains the Documentation of Project.
+
+##### 1. Turnitin Report
+
+- **File**: [Mini_Project_2.docx.pdf](Plagiarism_Report/Mini_Project_2.docx.pdf)
+
+This file contains Plag and Ai Report of Documentation.
+
+##### 2. Problem Statement
+
+- **File**: [Problem Statement File](ProblemStatement/Microservices+Hotel+Room+Booking+App-1.pdf)
+
+This file contains the SQL script for creating the necessary tables and schema for the MySQL database used in this project.
+
+##### 3. PostMan File
 
 - **File**: [Major Project MSBA.postman_collection](Major_Project_MSBA.postman_collection.json)
 
 This file contains the SQL script for creating the necessary tables and schema for the MySQL database used in this project.
 
-##### 2. Postman Environments
+##### 4. Postman Environments
 
 - **File**: [MSB-AUTH-CREDENTIALS.postman_environment](MSB-AUTH-CREDENTIALS.postman_environment.json)
 
 If you prefer using Postman for testing APIs, you can import this collection to quickly set up and test the endpoints provided by the hotel booking application.
 
 
-##### 3. MYSQL Data
+##### 5. MYSQL Data
 
 - **File**: [database_setup.sql](database_setup.sql)
 
