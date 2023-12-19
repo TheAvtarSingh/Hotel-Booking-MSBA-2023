@@ -432,7 +432,7 @@ The application provides RESTful APIs for managing hotels and bookings. You can 
  
 ## License
 
-This project is Coyrighted to  [@TheAvtarSingh](https://github.com/TheAvtarSingh/).
+This project is Copyrighted to  [@TheAvtarSingh](https://github.com/TheAvtarSingh/).
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
